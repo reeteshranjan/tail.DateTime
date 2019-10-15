@@ -1057,12 +1057,15 @@
                 today = new Date().toDateString(),
                 month = date.getMonth(), c, a, t = [], r = [], i,
                 disabled = [0, []], check, ranges,
+                day,
                 tooltips = [].concat(this.con.tooltips), tooltip = [0, 0];
 
             // Reset Date
             date.setHours(0, 0, 0, 0);
             date.setDate(1);
-            date.setDate((1 - (date.getDay() - this.con.weekStart)));
+            day = date.getDay();
+            day += day < this.con.weekStart ? 7 : 0;
+            date.setDate(this.con.weekStart - day + 1);
 
             // Create Table
             while(r.length < 6){
